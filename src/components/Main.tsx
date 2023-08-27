@@ -5,7 +5,7 @@ interface MainProps {
 }
 
 const Main: React.FC<MainProps> = ({ content }) => {
-  return <main><p>{content}</p></main>;
+  return <main><p className='text'>{content}</p></main>;
 };
 
 export default Main;

@@ -1,13 +1,14 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin'); //CSS出力
 
 module.exports = {
   target: 'node',
-  entry: './server/index.js', // エントリーポイント
+  entry: './server/index.js', // 読み込むファイル
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
-    publicPath: '/',
+    path: path.resolve(__dirname, 'dist'), //アウトプット先
+    filename: 'bundle.js', //アウトプットするファイル名
+    publicPath: '/static/',
   },
   externals: [nodeExternals()],
   mode: 'development', // 開発 development モードまたは本番 production モード
@@ -22,11 +23,16 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"],
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
     ],
   },
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx',],
   },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'style.css'
+    }),
+  ],
 };
