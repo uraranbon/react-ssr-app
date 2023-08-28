@@ -8,7 +8,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'), //アウトプット先
     filename: 'bundle.js', //アウトプットするファイル名
-    publicPath: '/static/',
+    publicPath: '/',
   },
   externals: [nodeExternals()],
   mode: 'development', // 開発 development モードまたは本番 production モード
